@@ -1,0 +1,27 @@
+---
+ 
+#  vars:
+#    warName: PopCommerce-2.0.0.war
+#   warRemotePath: /home/ansible/
+#    warLocalPath: /etc/ansible/
+
+#  tasks:
+
+#   - name: "download war using url"
+#     get_url: url=https://github.com/AKSarav/SampleWebApp/raw/master/dist/SampleWebApp.war dest=/etc/ansible
+#     delegate_to: localhost
+   - maven_artifact:
+        group_id: com.mycompany.app
+        artifact_id: my-app
+        repository_url: 'http://35.154.220.17:8081/repository/maven-snapshots/'
+        username: admin
+        password: shiva@246
+        dest: /tmp/customerfile.jar
+
+#   - name: "Download WAR to server"
+#     copy: src={{ warLocalPath }}/{{ warName }} dest={{ warRemotePath }}/{{ warName }}
+
+   - name: "Unzip WAR file"
+     command: cp  {{ warRemotePath }}/{{ warName }} /opt/apache-tomcat-7.0.61/webapps/
+     
+     notify:  restart tomcat

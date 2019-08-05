@@ -1,0 +1,28 @@
+---
+- hosts: all
+  become: true
+  user: ansible
+
+  tasks:
+  - name: hostname
+    debug:
+      var: ansible_hostname
+  - name: uuid
+    debug:
+      msg: system {{ inventory_hostname }} has uuid {{ ansible_product_uuid }}
+
+  - name: system info2
+    vars:
+     msg: |     
+      Timezone: {{ansible_date_time.tz}}
+      Date: {{ansible_date_time.date}}
+      Distribution: {{ansible_distribution}}
+    debug:
+      msg: "{{msg.split('\n')}}"
+
+  - name: disply user info
+    shell: who -b
+    register: find_output
+
+  - debug:
+      var: find_output.stdout

@@ -1,0 +1,12 @@
+---
+# This playbook deploys a simple standalone Tomcat 7 server.
+
+- hosts: all
+  become_user: root
+#  ansible_become_password: tomcat
+  become: true
+#  become_method: sudo
+#  sudo_pass: ansible
+  roles:
+   
+    - tomcat

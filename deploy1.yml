@@ -1,0 +1,9 @@
+--- 
+- 
+  become: true
+  become_user: ansible
+  hosts: all
+  tasks: 
+    - 
+      get-url: "url= http://13.235.75.14:8081/repository/maven-public/com/mycompany/app/my-app/1.0-SNAPSHOT/my-app-1.0-20190731.101320-1.jar dest= /home/ansible/"
+      name: "downloading  war file to destnation  directory"

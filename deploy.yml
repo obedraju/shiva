@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: true
+  become_user: ansible
+
+  tasks:
+
+    - maven_artifact:
+        group_id: com.mycompany.app
+        artifact_id: my-app
+        repository_url: 'http://13.127.180.70:8081/repository/maven-snapshots/'
+        username: admin
+        password: shiva
+        dest: /tmp/customerfile.jar
